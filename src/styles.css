@@ -86,12 +86,16 @@
     .page-width { width:calc(100% - 40px); } .site-header { height:76px; }
     .hero { min-height:690px; align-items:flex-start; } .hero-photo { object-position:66% bottom; }
     .hero::after { background:linear-gradient(180deg, oklch(0.965 0.007 110) 0%, oklch(0.965 0.007 110 / 96%) 55%, oklch(0.965 0.007 110 / 86%) 80%, transparent 100%); }
-    .hero-content { padding-block:42px; } .hero h1 { font-size:40px; max-width:360px; }
+    .hero-content { padding-block:42px; } .hero h1 { font-size:36px; max-width:360px; overflow-wrap:break-word; hyphens:auto; }
     .hero-copy { font-size:15px; max-width:340px; margin-top:18px; } .hero-note { margin-top:15px; }
     .section { padding-block:60px; } .section-heading { font-size:30px; }
     .trust-strip { padding-block:22px; } .trust-item { font-size:11px; gap:7px; }
     .feature-card { padding:24px; } .closing { padding-block:50px; }
     .role-tabs { gap:0; } .role-tabs button { padding-inline:13px; }
+    .preview-row { display:grid; grid-template-columns:45px minmax(0, 1fr); gap:8px 12px; }
+    .preview-date { grid-row:span 2; }
+    .preview-status { grid-column:2; margin-left:0; justify-self:start; }
+    .site-header .wordmark { gap:4px; font-size:22px; }
   }
   @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } }
 }
