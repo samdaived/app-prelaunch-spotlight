@@ -6,7 +6,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
 export default defineConfig({
-    base: "/app-prelaunch-spotlight/",
+    base: process.env.BASE_URL || "/",
   server: {
     host: "::",
     port: 8080,
