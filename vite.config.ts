@@ -4,6 +4,9 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
 export default defineConfig({
   plugins: [tanstackStart(), react()],
+  build: {
+    cssMinify: false,
+  },
   server: {
     port: 3000,
   },
