@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the holding website frontend-only, with in-page navigation and client-side role previews; the operational interpreting app is a separate future release.
+- Keep visual styles and semantic palette in the global design system so page sections share consistent styling.
