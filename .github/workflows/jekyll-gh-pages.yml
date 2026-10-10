@@ -35,14 +35,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy 404 fallback for SPA routing
-        run: |
-          if [ -d "dist/client" ]; then
-            cp dist/client/index.html dist/client/404.html
-          else
-            cp dist/index.html dist/404.html
-          fi
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
