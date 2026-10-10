@@ -20,11 +20,6 @@ jobs:
     environment:
       name: github-pages
 
-    env:
-      VITE_SUPABASE_PROJECT_ID: ${{ secrets.VITE_SUPABASE_PROJECT_ID }}
-      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-      VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,15 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "24"
-
-      - name: Cache npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: "20" # Node 20 or 22 works great
 
       - name: Install dependencies
         run: npm ci
@@ -48,8 +35,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy 404 fallback
-        run: cp dist/index.html dist/404.html
+      - name: Copy 404 fallback for SPA routing
+        run: |
+          if [ -d "dist/client" ]; then
+            cp dist/client/index.html dist/client/404.html
+          else
+            cp dist/index.html dist/404.html
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -57,6 +49,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # Note: TanStack Start or standard Vite puts output in 'dist' or 'dist/client'. 
+          # Adjust if your build outputs to a client subfolder.
           path: "./dist"
 
   deploy:
