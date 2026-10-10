@@ -8,7 +8,7 @@ import { resolveLanguage } from '@/lib/albaa-language';
 
 export const Route = createFileRoute('/')({
   component: Index,
-  validateSearch: (search: Record<string, unknown>): { lang: Language } => ({ lang: resolveLanguage(search.lang) }),
+  validateSearch: (search: Record<string, unknown>): { lang: Language } => ({ lang: resolveLanguage(search['lang']) }),
   head: ({ match }) => {
     const lang = resolveLanguage(match.search.lang);
     const meta = copy[lang].meta;
