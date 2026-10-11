@@ -10,7 +10,7 @@ export function SiteHeader({ lang, onLanguage, portal = false }: { lang: Languag
   const { theme, toggle } = useTheme();
   const t = copy[lang];
   const themeLabel = theme === 'light' ? t.controls.dark : t.controls.light;
-  const sections = [['features', t.nav.features], ['for-you', t.nav.roles], ['how-it-works', t.nav.process]];
+  const sections: Array<[string, string]> = [['features', t.nav.features], ['for-you', t.nav.roles], ['how-it-works', t.nav.process]];
   return <header className="site-header relative z-20"><div className="page-width header-layout">
     <Link to="/" search={{ lang }} className="wordmark" aria-label="Albaa"><span className="brand-mark"><Languages size={30} strokeWidth={2.2} /></span>Albaa<span className="text-primary">.</span></Link>
     <nav className="header-nav" aria-label={t.nav.menu}>{sections.map(([hash, label]) => <Link key={hash} to="/" search={{ lang }} hash={hash} className="nav-link">{label}</Link>)}</nav>
@@ -18,6 +18,6 @@ export function SiteHeader({ lang, onLanguage, portal = false }: { lang: Languag
       <Button variant="ghost" size="icon" onClick={toggle} aria-label={themeLabel} title={themeLabel}>{theme === 'light' ? <Moon /> : <Sun />}</Button>
       {!portal && <Button asChild size="sm"><Link to="/myportal" search={{ lang }}><LogIn />{t.controls.login}</Link></Button>}
     </div>
-    <Button className="header-menu" variant="ghost" size="icon" aria-label={open ? t.nav.close : t.nav.menu} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
+    <div className="header-menu"><Button variant="ghost" size="icon" aria-label={open ? t.nav.close : t.nav.menu} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button></div>
   </div>{open && <nav className="mobile-nav" aria-label={t.nav.menu}>{sections.map(([hash, label]) => <Link key={hash} to="/" search={{ lang }} hash={hash} className="nav-link" onClick={() => setOpen(false)}>{label}</Link>)}</nav>}</header>;
 }
