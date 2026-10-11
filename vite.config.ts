@@ -6,7 +6,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
 export default defineConfig({
-    base: process.env.BASE_URL || "/",
+  base: process.env.BASE_URL || "/",
   server: {
     host: "::",
     port: 8080,
@@ -22,7 +22,11 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      prerender: {
+        routes: ['/'],
+      },
+    }),
     viteReact(),
   ],
 });
