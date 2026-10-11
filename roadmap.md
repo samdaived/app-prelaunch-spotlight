@@ -5,3 +5,7 @@
 - [x] Rename the website Albaa and introduce its Finland focus.
 - [x] Provide Finnish by default, with Swedish and English options.
 - [x] Verify all languages and navigation.
+- [x] Add light/dark modes and a translated /myportal development page with login navigation.
+- [x] Correct the phone photo layout.
+- [x] Replace no-AI copy with Albaa's Finland-based AI vision in all languages.
+- [x] Check themes, portal navigation and phone layouts.

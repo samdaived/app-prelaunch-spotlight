@@ -12,3 +12,5 @@
 - Keep the holding website frontend-only, with in-page navigation and client-side role previews; the operational interpreting app is a separate future release.
 - Keep visual styles and semantic palette in the global design system so page sections share consistent styling.
 - Keep localized page content in a typed translation module and select language through validated URL search state; this preserves frontend-only operation and makes language links shareable.
+- Share navigation and theme state across public pages; keep the portal a public development placeholder without authentication until actual portal functionality is requested.
+- Use semantic dark-theme tokens and a shared client-side theme provider; persist only the display preference in browser storage.
