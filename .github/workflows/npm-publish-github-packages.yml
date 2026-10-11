@@ -43,21 +43,19 @@ jobs:
 
       - name: Prepare static Pages artifact
         run: |
-          echo "Checking build output..."
-          ls -la
-          ls -la dist || true
-          ls -la dist/client || true
-
           if [ -f "dist/client/index.html" ]; then
-            cp dist/client/index.html dist/client/404.html
-            touch dist/client/.nojekyll
+            pages_dir="dist/client"
           elif [ -f "dist/index.html" ]; then
-            cp dist/index.html dist/404.html
-            touch dist/.nojekyll
+            pages_dir="dist"
           else
             echo "ERROR: no static HTML was generated"
             exit 1
           fi
+
+          cp "$pages_dir/index.html" "$pages_dir/404.html"
+          touch "$pages_dir/.nojekyll"
+          cp CNAME "$pages_dir/CNAME"
+          echo "PAGES_ARTIFACT_DIR=$pages_dir" >> "$GITHUB_ENV"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -65,7 +63,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: ${{ env.PAGES_ARTIFACT_DIR }}
 
   deploy:
     needs: build

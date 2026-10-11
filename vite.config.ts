@@ -23,9 +23,7 @@ export default defineConfig({
     tsConfigPaths(),
     tailwindcss(),
     tanstackStart({
-      prerender: {
-        routes: ['/'],
-      },
+      pages: [{ path: "/", prerender: { enabled: true } }],
     }),
     viteReact(),
   ],
