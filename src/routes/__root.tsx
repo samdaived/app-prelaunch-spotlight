@@ -10,6 +10,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { ThemeProvider } from "@/components/theme-provider";
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -113,7 +115,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <ThemeProvider><Outlet /></ThemeProvider>
     </QueryClientProvider>
   );
 }
